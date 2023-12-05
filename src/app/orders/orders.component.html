@@ -1,0 +1,87 @@
+<div class="flex flex-col p-2 ">
+
+
+
+  <div class="flex items-center justify-between mb-2">
+    <label  class="capitalize font-bold text-lg text-orange-500">all orders</label>
+    <button class="bg-orange-500 text-white rounded-full p-2 capitalize" (click)="openAddOrderPopup()">
+      add order</button>
+  </div>
+  <table class="table-auto border">
+    <thead>
+    <tr>
+      <th class="capitalize">iD</th>
+      <th class="capitalize">order name</th>
+      <th class="capitalize">order type</th>
+      <th class="capitalize">patient name</th>
+      <th class="capitalize">doctor name</th>
+      <th class="capitalize">room number</th>
+      <th class="capitalize">visit date</th>
+      <th class="capitalize">update </th>
+      <th class="capitalize">delete </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders; let i = index;">
+      <td class="text-center">{{order.id}}</td>
+      <td class="text-center">{{order.name}}</td>
+      <td class="text-center">{{order.type}}</td>
+      <td class="text-center">{{patientIdMapper(order.patient_id)}}</td>
+      <td class="text-center">{{doctorIdMApper(order.doctor_id)}}</td>
+      <td class="text-center">{{roomIdMapper(order.room_id)}}</td>
+      <td class="text-center">{{visitIdMapper(order.visit_id)}}</td>
+      <td class="text-center">
+        <button class="bg-yellow-800 text-white h-10 w-10 rounded-full " (click)="updateOrder(i)">U</button>
+      </td>
+      <td class="text-center">
+        <button class="bg-yellow-400 text-white h-10 w-10 rounded-full " (click)="deleteOrder(i)" >D</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+  <div class="flex flex-col p-2 w-1/2">
+    <button class="bg-blue-500 p-3 w-1/5 rounded-full text-white" (click)="createOrdersReport()">create orders report</button>
+    <div class="grid grid-cols-2 gap-2">
+      <div class="capitalize text-center">order name</div>
+      <div class="capitalize text-center">order type</div>
+      <ng-container *ngFor="let order of ordersReport">
+        <div class="capitalize text-center">{{order.order_name}}</div>
+        <div class="capitalize text-center">{{order.order_type}}</div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="flex flex-col p-2 w-1/2">
+    <button class="bg-blue-500 p-3 w-1/5 rounded-full text-white" (click)="createMedsReport()">create meds report</button>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="capitalize text-center">patient ID </div>
+      <div class="capitalize text-center">doctor ID </div>
+      <div class="capitalize text-center">med name</div>
+      <ng-container *ngFor="let medi of medsReport">
+        <div class="capitalize text-center">{{medi.patient_name}}</div>
+        <div class="capitalize text-center">{{medi.doctor_name}}</div>
+        <div class="capitalize text-center">{{medi.med_name}}</div>
+      </ng-container>
+
+    </div>
+  </div>
+  <div class="flex flex-col p-2 w-1/2">
+    <button class="bg-blue-500 p-3 w-1/5 rounded-full text-white" (click)="createMedsByNameReport()">create meds by name report</button>
+    <div class="grid grid-cols-2 gap-2">
+      <div class="capitalize text-center">medication name </div>
+      <div class="capitalize text-center">medication count </div>
+
+      <ng-container>
+        <div class="capitalize text-center">med</div>
+        <div class="capitalize text-center">{{medsByNameReport}}</div>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,41 @@
+<div class="flex flex-col p-2" >
+  <div class="flex items-center justify-between">
+    <label class="font-bold capitalize" >{{editMode? 'update': 'add'}} patient</label>
+    <button class="bg-purple-500 w-10 h-10 rounded-full text-white text-center text-lg font-extrabold" (click)="closePopup()">x</button>
+  </div>
+
+  <form class="grid grid-cols-2 gap-2 " [formGroup]="addPatientsForm" >
+    <mat-form-field class="">
+      <mat-label class="capitalize">enter patient ID</mat-label>
+      <input matInput type="number" class="" [formControlName]="'id'">
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label class="capitalize">enter patient name</mat-label>
+      <input matInput type="text" class="" [formControlName]="'name'">
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label class="capitalize">enter patient gender</mat-label>
+      <input matInput type="text" class="" [formControlName]="'gender'">
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label class="capitalize">enter national ID </mat-label>
+      <input matInput type="number" class="" [formControlName]="'national_id'">
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label class="capitalize">enter date of birth </mat-label>
+      <input matInput type="date" class="" [formControlName]="'birth_date'">
+    </mat-form-field>
+  </form>
+
+  <div class="flex items-center justify-end my-2 space-x-2">
+    <button class="bg-purple-500 text-white p-2 rounded-full font-semmibold cursor-pointer capitalize" (click)="addPatientButton()">
+      {{editMode? 'update': 'add'}} patient</button>
+    <button class="border border-purple-500 text-purple-500 p-2 rounded-full font-semmibold cursor-pointer capitalize" (click)="closePopup()">cancel</button>
+  </div>
+
+
+</div>

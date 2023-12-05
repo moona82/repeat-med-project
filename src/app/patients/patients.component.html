@@ -1,0 +1,62 @@
+<div class="flex flex-col p-2 ">
+
+
+
+  <div class="flex items-center justify-between mb-2">
+    <label  class="capitalize font-bold text-lg text-green-500">all patients</label>
+    <button class="bg-green-500 text-white rounded-full p-2 capitalize" (click)="openPatientPopup()">add patient</button>
+  </div>
+  <table class="table-auto border">
+    <thead>
+    <tr>
+      <th class="capitalize">iD</th>
+      <th class="capitalize">patient name</th>
+      <th class="capitalize">gender</th>
+      <th class="capitalize">national ID</th>
+      <th class="capitalize">date of birth</th>
+      <th class="capitalize">update </th>
+      <th class="capitalize">delete </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let patient of patients; let i = index; ">
+      <td class="text-center">{{patient.id}}</td>
+      <td class="text-center">{{patient.name}}</td>
+      <td class="text-center">{{patient.gender}}</td>
+      <td class="text-center">{{patient.national_id}}</td>
+      <td class="text-center">{{patient.birth_date}}</td>
+      <td class="text-center">
+        <button class="bg-yellow-400 text-white h-10 w-10 rouned-full " (click)="updatePatient(i)">U</button>
+      </td>
+      <td class="text-center">
+        <button class="bg-yellow-400 text-white h-10 w-10 rouned-full " (click)="deletePatient(i)">D</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+
+  <div class="grid grid-cols-2 gap-2  p-2 w-1/2">
+    <div class="flex flex-col">
+      <button class="bg-blue-500 p-3  rounded-full text-white" (click)="createPatientsReport()">create patients report</button>
+      <div class="flex flex-col">
+        <div class="capitalize text-start">patient name</div>
+        <ng-container *ngFor="let patient of patientsReport">
+          <div class="">{{patient.patient_name}}</div>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <button class="bg-blue-500 p-3  rounded-full text-white" (click)="createPatienttCount()" >create patients count report</button>
+      <div class="flex flex-col">
+        <div class="">total</div>
+        <div class="">{{patientsCountReport}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>

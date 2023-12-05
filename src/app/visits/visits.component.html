@@ -1,0 +1,42 @@
+<div class="flex flex-col p-2 ">
+
+  <div class="flex items-center justify-between mb-2">
+    <label  class="capitalize font-bold text-lg text-fuchsia-500">all visits</label>
+    <button class="bg-fuchsia-500 text-white rounded-full p-2 capitalize"  (click)="openAddVisitPopup()">add visit</button>
+  </div>
+  <table class="table-auto border">
+    <thead>
+    <tr>
+      <th class="capitalize">ID</th>
+      <th class="capitalize">visit date</th>
+      <th class="capitalize">patient name</th>
+      <th class="capitalize">doctor name</th>
+      <th class="capitalize">room number</th>
+      <th class="capitalize">order name</th>
+      <th class="capitalize">update </th>
+      <th class="capitalize">delete </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let visit of visits; let i = index ; " >
+      <td class="text-center">{{visit.id}}</td>
+      <!--      here we used mapper to call the dat key from another array to our table which use our current array -->
+      <td class="text-center">{{visit.visit_date}}</td>
+      <td class="text-center">{{patientIdMapper(visit.patient_id)}}</td>
+      <td class="text-center">{{doctorIdMapper(visit.doctor_id)}}</td>
+      <td class="text-center">{{roomIdMapper(visit.room_id)}}</td>
+      <td class="text-center">{{orderIdMapper(visit.order_id)}}</td>
+      <td class="text-center">
+        <button class="bg-yellow-800 text-white h-10 w-10 rounded-full " (click)="updateVisit(i)" >U</button>
+      </td>
+      <td class="text-center">
+        <button class="bg-yellow-400 text-white h-10 w-10 rounded-full " (click)="deleteVisit(i)">D</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+
+</div>

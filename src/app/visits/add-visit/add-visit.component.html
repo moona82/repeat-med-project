@@ -1,0 +1,72 @@
+<div class="flex flex-col p-2" >
+  <div class="flex items-center justify-between">
+    <label class="font-bold capitalize" >{{editMode? 'update': 'add'}} visit</label>
+    <button class="bg-purple-500 w-10 h-10 rounded-full text-white text-center text-lg font-extrabold" (click)="closePopup()">x</button>
+  </div>
+
+  <form class="grid grid-cols-2 gap-2 "  [formGroup]="addVisitsForm">
+    <mat-form-field>
+      <mat-label class="capitalize">    enter ID  </mat-label>
+        <input matInput type="number" class="" [formControlName]="'id'">
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label class="">   enter visit date   </mat-label>
+        <input matInput type="date" class="" [formControlName]="'visit_date'">
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label class="">    enter patient ID  </mat-label>
+        <mat-select class="" [formControlName]="'patient_id'">
+          <ng-container *ngFor="let patient of patients">
+            <mat-option class="" [value]="patient.id">{{patient.name}}</mat-option>
+          </ng-container>
+        </mat-select>
+
+
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label class="">   enter doctor ID    </mat-label>
+        <mat-select [formControlName]="'doctor_id'">
+          <ng-container *ngFor="let doctor of doctors ">
+            <mat-option class="" [value]="doctor.id">{{doctor.name}}</mat-option>
+          </ng-container>
+        </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label class="">   enter room ID   </mat-label>
+        <mat-select [formControlName]="'room_id'">
+          <ng-container *ngFor="let room of rooms">
+            <mat-option [value]="room.id">{{room.r_number}}</mat-option>
+          </ng-container>
+        </mat-select>
+
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label class=""> enter order ID </mat-label>
+        <mat-select [formControlName]="'order_id'">
+          <ng-container *ngFor="let order of orders ">
+            <mat-option class="" [value]="order.id">{{order.name}}</mat-option>
+          </ng-container>
+        </mat-select>
+
+
+    </mat-form-field>
+  </form>
+
+  <div class="flex items-center justify-end my-2 space-x-2">
+    <button class="bg-purple-500 text-white p-2 rounded-full font-semmibold cursor-pointer capitalize" (click)="addVisit()">
+      {{editMode? 'update': 'add'}} visit</button>
+    <button class="border border-purple-500 text-purple-500 p-2 rounded-full font-semmibold cursor-pointer capitalize" (click)="closePopup()">cancel</button>
+  </div>
+
+
+</div>

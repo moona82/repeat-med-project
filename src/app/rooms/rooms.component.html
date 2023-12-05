@@ -1,0 +1,40 @@
+<div class="flex flex-col p-2 ">
+
+  <div class="flex items-center justify-between mb-2">
+    <label  class="capitalize font-bold text-lg text-pink-500">all rooms</label>
+    <button class="bg-pink-500 text-white rounded-full p-2 capitalize" (click)="openAddRoomPopup()">add room</button>
+  </div>
+  <table class="table-auto border">
+    <thead>
+    <tr>
+      <th class="capitalize">ID</th>
+      <th class="capitalize">room number</th>
+      <th class="capitalize">date</th>
+      <th class="capitalize">from</th>
+      <th class="capitalize">to</th>
+      <th class="capitalize">doctor name</th>
+      <th class="capitalize">update </th>
+      <th class="capitalize">delete </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let room of rooms; let i = index;">
+      <td class="text-center">{{room.id}}</td>
+      <td class="text-center">{{room.r_number}}</td>
+      <td class="text-center">{{room.r_date}}</td>
+      <td class="text-center">{{room.r_from}}</td>
+      <td class="text-center">{{room.r_to}}</td>
+      <td class="text-center">{{doctorIdMapper(room.doctor_id)}}</td>
+      <td class="text-center">
+        <button class="bg-yellow-800 text-white h-10 w-10 rounded-full " (click)="updateRoom(i)">U</button>
+      </td>
+      <td class="text-center">
+        <button class="bg-yellow-400 text-white h-10 w-10 rounded-full " (click)="deleteRoom(i)">D</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+</div>

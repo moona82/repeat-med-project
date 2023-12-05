@@ -41,7 +41,7 @@ export class ProcessingServices {
     let medsReport = [];
 
     for (let order of orders) {
-
+//todo only include meds in the report
       medsReport.push({
         patient_id: order.patient_id,
         doctor_id: order.doctor_id,

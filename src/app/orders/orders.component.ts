@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IDoctors, IMedications, IMedsByNameList, IOrders, IOrdersList, IPatients, IRooms, IVisits} from "../interfaces";
+import {IDoctors, IMedications, IOrders, IOrdersList, IPatients, IRooms, IVisits} from "../interfaces";
 import {MatDialog} from "@angular/material/dialog";
 import {AddOrderComponent} from "./add-order/add-order.component";
 import {ProcessingServices} from "../processing-services";
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-orders',
@@ -16,7 +17,7 @@ export class OrdersComponent implements OnInit {
   medsReport:IMedications[]=[];
   medsByNameReport:number=0;
   @Output() changedOrders: EventEmitter<IOrders[]> = new EventEmitter<IOrders[]>();
-  @Input() patients:IPatients[]=[];
+  patients:IPatients[]=[];
   @Input() doctors:IDoctors[]=[];
   @Input() rooms:IRooms[]=[];
   @Input() visits:IVisits[]=[];
@@ -24,12 +25,14 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private _dialog:MatDialog,
-    private _services : ProcessingServices
+    private _services : ProcessingServices,
+    private _dataService: DataService
   ) { }
 
 
   ngOnInit(): void {
     this.loadButton();
+    this._dataService.patients$.subscribe((data) => this.patients = data);
   }
 
   openAddOrderPopup() {

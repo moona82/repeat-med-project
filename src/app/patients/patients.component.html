@@ -3,7 +3,7 @@
 
 
   <div class="flex items-center justify-between mb-2">
-    <label  class="capitalize font-bold text-lg text-green-500">all patients</label>
+    <label  class="capitalize font-bold text-lg text-green-500">all patients <ng-container *ngIf="patients">PC:{{patients.length}}</ng-container></label>
     <button class="bg-green-500 text-white rounded-full p-2 capitalize" (click)="openPatientPopup()">add patient</button>
   </div>
   <table class="table-auto border">

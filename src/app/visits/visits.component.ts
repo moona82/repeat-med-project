@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IDoctors, IOrders, IPatients, IRooms, IVisits} from "../interfaces";
 import {MatDialog} from "@angular/material/dialog";
 import {AddVisitComponent} from "./add-visit/add-visit.component";
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-visits',
@@ -14,15 +15,18 @@ export class VisitsComponent implements OnInit {
   @Output() changedVisits : EventEmitter<IVisits[]> = new EventEmitter<IVisits[]>();
   @Input() doctors:IDoctors[]=[];
   @Input() rooms:IRooms[]=[];
-  @Input() patients:IPatients[]=[];
+  patients:IPatients[]=[];
   @Input() orders:IOrders[]=[];
 
   constructor(
-    private  _dialog :MatDialog
+    private  _dialog :MatDialog,
+    private _dataService: DataService
   ) { }
 
   ngOnInit(): void {
     this.loadButton();
+
+    this._dataService.patients$.subscribe((data) => this.patients = data);
   }
 
   openAddVisitPopup() {

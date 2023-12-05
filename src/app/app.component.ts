@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IDoctors, IOrders, IPatients, IRooms, IVisits} from "./interfaces";
+import {DataService} from "./data.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'repeat-med-project';
   patients:IPatients[]=[];
   orders:IOrders[]=[];
@@ -15,9 +16,13 @@ export class AppComponent {
   visits:IVisits[]=[];
 
 
-  onChangedPatients($event: IPatients[]) {
-    this.patients= $event;
+  constructor(private _dataService: DataService) {
   }
+
+  ngOnInit(): void {
+    this._dataService.patients$.subscribe((data) => this.patients = data);
+  }
+
 
   onChangedOrders($event: IOrders[]) {
     this.orders = $event;
@@ -35,4 +40,6 @@ export class AppComponent {
   onChangedVisits($event: IVisits[]) {
     this.visits = $event;
   }
+
+
 }

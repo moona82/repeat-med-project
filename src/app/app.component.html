@@ -1,11 +1,14 @@
 <div class="grid grid-cols-2 gap-2  p-4 space-y-3">
+
+  <h1 class="col-span-2"><ng-container *ngIf="patients">PC:{{patients.length}}</ng-container></h1>
+
   <app-patients class="col-span-2"
-  (changedPatients)="onChangedPatients($event)"
+
   ></app-patients>
 
   <app-orders class="col-span-2"
   (changedOrders)="onChangedOrders($event)"
-              [patients]="patients"
+
               [doctors]="doctors"
               [rooms]="rooms"
               [visits]="visits"
@@ -25,7 +28,7 @@
   (changedVisits)="onChangedVisits($event)"
               [doctors]="doctors"
               [rooms]="rooms"
-              [patients]="patients"
+
               [orders]="orders"
   ></app-visits>
 

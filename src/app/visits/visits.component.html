@@ -1,7 +1,7 @@
 <div class="flex flex-col p-2 ">
 
   <div class="flex items-center justify-between mb-2">
-    <label  class="capitalize font-bold text-lg text-fuchsia-500">all visits</label>
+    <label  class="capitalize font-bold text-lg text-fuchsia-500">all visits <ng-container *ngIf="patients">PC:{{patients.length}}</ng-container></label>
     <button class="bg-fuchsia-500 text-white rounded-full p-2 capitalize"  (click)="openAddVisitPopup()">add visit</button>
   </div>
   <table class="table-auto border">

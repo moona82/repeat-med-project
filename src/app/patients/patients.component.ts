@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IPatients, IPatientsList} from "../interfaces";
 import {MatDialog} from "@angular/material/dialog";
 import {AddPatientComponent} from "./add-patient/add-patient.component";
 import {ProcessingServices} from "../processing-services";
+import {DataService} from "../data.service";
 
 
 @Component({
@@ -12,13 +13,13 @@ import {ProcessingServices} from "../processing-services";
 })
 export class PatientsComponent implements OnInit {
   patients:IPatients[]=[];
-  @Output() changedPatients: EventEmitter<IPatients[]> = new EventEmitter<IPatients[]>();
+
   patientsReport:IPatientsList[]=[];
   patientsCountReport:number=0;
   constructor(
     private _dialog:MatDialog,
-    private _services :ProcessingServices
-
+    private _services :ProcessingServices,
+    private _dataService: DataService,
 
   ) { }
 
@@ -31,7 +32,8 @@ export class PatientsComponent implements OnInit {
     dialog.afterClosed().subscribe(data=>{
       if (data){
        this.patients.push(data);
-        this.changedPatients.emit(this.patients);
+        // this.changedPatients.emit(this.patients);
+        this._dataService.updatePatients(this.patients);
         this.saveButton();
       }
 
@@ -48,7 +50,8 @@ export class PatientsComponent implements OnInit {
     dialog.afterClosed().subscribe(data=>{
       if (data){
        this.patients[i]=data;
-       this.changedPatients.emit(this.patients);
+       // this.changedPatients.emit(this.patients);
+        this._dataService.updatePatients(this.patients);
        this.saveButton();
       }
     })
@@ -56,7 +59,8 @@ export class PatientsComponent implements OnInit {
 
   deletePatient(i: number) {
   this.patients.splice(i,1);
-  this.changedPatients.emit(this.patients);
+  // this.changedPatients.emit(this.patients);
+    this._dataService.updatePatients(this.patients);
   this.saveButton();
   }
 
@@ -71,7 +75,8 @@ export class PatientsComponent implements OnInit {
     let patientsRetrived = JSON.parse(patientsLocal +'');
 
       this.patients = patientsRetrived;
-      this.changedPatients.emit(this.patients);
+      // this.changedPatients.emit(this.patients);
+    this._dataService.updatePatients(this.patients);
 
   }
 
